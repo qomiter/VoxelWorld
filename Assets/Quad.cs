@@ -38,7 +38,14 @@ public class Quad : MonoBehaviour
         uvs = new Vector2[] { uv11, uv01, uv00, uv10 };
         triangles = new int[] {3,1,0,3,2,1};
 
+        mesh.vertices = vertices;
+        mesh.normals = normals;
+        mesh.uv = uvs;
+        mesh.triangles = triangles;
 
+        mesh.RecalculateBounds();
+
+        mf.mesh = mesh;
     }
 
     // Update is called once per frame

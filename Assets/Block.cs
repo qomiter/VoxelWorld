@@ -2,28 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Block : MonoBehaviour
+public class Block
 {
-    [System.Serializable]
-    public enum BlockSide { BOTTOM, TOP, LEFT, RIGHT, FRONT, BACK };
-    public Material atlas;
+    
+    public Mesh mesh;
+    
     
     
     // Start is called before the first frame update
-    void Start()
+    public Block(Vector3 offset, MeshUtils.BlockType type)
     {
-        MeshFilter mf = this.gameObject.AddComponent<MeshFilter>();
-        MeshRenderer mr = this.gameObject.AddComponent<MeshRenderer>();
-        mr.material = atlas;
-
-
+         
         Quad[] quads = new Quad[6];
-        quads[0] = new Quad(BlockSide.BOTTOM, new Vector3(0, 0, 0), MeshUtils.BlockType.SAND);
-        quads[1] = new Quad(BlockSide.TOP, new Vector3(0, 0, 0), MeshUtils.BlockType.SAND);
-        quads[2] = new Quad(BlockSide.LEFT, new Vector3(0, 0, 0), MeshUtils.BlockType.SAND);
-        quads[3] = new Quad(BlockSide.RIGHT, new Vector3(0, 0, 0), MeshUtils.BlockType.SAND);
-        quads[4] = new Quad(BlockSide.FRONT, new Vector3(0, 0, 0), MeshUtils.BlockType.SAND);
-        quads[5] = new Quad(BlockSide.BACK, new Vector3(0, 0, 0), MeshUtils.BlockType.SAND);
+        quads[0] = new Quad(MeshUtils.BlockSide.BOTTOM, offset, MeshUtils.BlockType.DIRT);
+        quads[1] = new Quad(MeshUtils.BlockSide.TOP, offset, MeshUtils.BlockType.DIRT);
+        quads[2] = new Quad(MeshUtils.BlockSide.LEFT, offset, MeshUtils.BlockType.DIRT);
+        quads[3] = new Quad(MeshUtils.BlockSide.RIGHT, offset, MeshUtils.BlockType.DIRT);
+        quads[4] = new Quad(MeshUtils.BlockSide.FRONT, offset, MeshUtils.BlockType.DIRT);
+        quads[5] = new Quad(MeshUtils.BlockSide.BACK, offset, MeshUtils.BlockType.DIRT);
 
         Mesh[] sideMeshes = new Mesh[6];
         sideMeshes[0] = quads[0].mesh;
@@ -33,15 +29,10 @@ public class Block : MonoBehaviour
         sideMeshes[4] = quads[4].mesh;
         sideMeshes[5] = quads[5].mesh;
 
-        mf.mesh = MeshUtils.MergeMeshes(sideMeshes);
-        mf.mesh.name = "Cube_0_0_0";
+        mesh = MeshUtils.MergeMeshes(sideMeshes);
+        mesh.name = "Cube_0_0_0";
 
          
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

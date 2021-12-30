@@ -6,6 +6,7 @@ public class Block : MonoBehaviour
 {
     [System.Serializable]
     public enum BlockSide { BOTTOM, TOP, LEFT, RIGHT, FRONT, BACK };
+    public Material atlas;
     
     
     // Start is called before the first frame update
@@ -13,6 +14,7 @@ public class Block : MonoBehaviour
     {
         MeshFilter mf = this.gameObject.AddComponent<MeshFilter>();
         MeshRenderer mr = this.gameObject.AddComponent<MeshRenderer>();
+        mr.material = atlas;
 
         Quad[] quads = new Quad[6];
         quads[0] = new Quad(BlockSide.BOTTOM, new Vector3(0, 0, 0));

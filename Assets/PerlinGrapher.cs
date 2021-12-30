@@ -19,17 +19,17 @@ public class PerlinGrapher : MonoBehaviour
         Graph();
     }
 
-    float fBM(float x, float z)
-    {
-        float total = 0;
-        float frequency = 1;
-        for(int i = 0; i < octaves; i++)
-        {
-            total += Mathf.PerlinNoise(x * scale * frequency, z * scale * frequency) * heightScale;
-            frequency *= 2;
-        }
-        return total;
-    }
+    //float fBM(float x, float z)
+    //{
+    //    float total = 0;
+    //    float frequency = 1;
+    //    for(int i = 0; i < octaves; i++)
+    //    {
+    //        total += Mathf.PerlinNoise(x * scale * frequency, z * scale * frequency) * heightScale;
+    //        frequency *= 2;
+    //    }
+    //    return total;
+    //}
 
     void Graph()
     {
@@ -39,7 +39,7 @@ public class PerlinGrapher : MonoBehaviour
         Vector3[] positions = new Vector3[lr.positionCount];
         for(int x = 0; x < lr.positionCount; x++)
         {
-            float y = fBM(x,z) + heighOffset;
+            float y = MeshUtils.fBM(x,z, octaves, scale, heightScale, heighOffset) ;
             positions[x] = new Vector3(x, y, z);
         }
         lr.SetPositions(positions);

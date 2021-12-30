@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Quad
 {
-    // Start is called before the first frame update
-    public Mesh Build(Block.BlockSide side)
+
+    public Mesh mesh;
+
+    public Quad(Block.BlockSide side, Vector3 offset)
     {
-        Mesh mesh;
+        
 
         mesh = new Mesh();
         mesh.name = "ScriptedQuad";
@@ -22,14 +24,14 @@ public class Quad
         Vector2 uv01 = new Vector2(0, 1);
         Vector2 uv11 = new Vector2(1,1);
 
-        Vector3 p0 = new Vector3(-0.5f, -0.5f, 0.5f);
-        Vector3 p1 = new Vector3(0.5f, -0.5f, 0.5f);
-        Vector3 p2 = new Vector3(0.5f, -0.5f, -0.5f);
-        Vector3 p3 = new Vector3(-0.5f, -0.5f, -0.5f);
-        Vector3 p4 = new Vector3(-0.5f, 0.5f, 0.5f);
-        Vector3 p5 = new Vector3(0.5f, 0.5f, 0.5f);
-        Vector3 p6 = new Vector3(0.5f, 0.5f, -0.5f);
-        Vector3 p7 = new Vector3(-0.5f, 0.5f, -0.5f);
+        Vector3 p0 = new Vector3(-0.5f, -0.5f, 0.5f) + offset;
+        Vector3 p1 = new Vector3(0.5f, -0.5f, 0.5f) + offset;
+        Vector3 p2 = new Vector3(0.5f, -0.5f, -0.5f) + offset;
+        Vector3 p3 = new Vector3(-0.5f, -0.5f, -0.5f) + offset;
+        Vector3 p4 = new Vector3(-0.5f, 0.5f, 0.5f) + offset;
+        Vector3 p5 = new Vector3(0.5f, 0.5f, 0.5f) + offset;
+        Vector3 p6 = new Vector3(0.5f, 0.5f, -0.5f) + offset;
+        Vector3 p7 = new Vector3(-0.5f, 0.5f, -0.5f) + offset;
 
         switch (side)
         {
@@ -91,6 +93,6 @@ public class Quad
 
         mesh.RecalculateBounds();
 
-        return mesh;
+        
     }
 }
